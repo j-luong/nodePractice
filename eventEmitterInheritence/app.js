@@ -1,7 +1,10 @@
 var EventEmitter = require('events');
-var util = require('util');
+var util = require('util'); //only for util.inherits
 var eventConfig = require('./config');
+var Greetr = require('./greetr');
 
+/*
+// Old syntax
 function Greetr() {
   EventEmitter.call(this); //equivalent to super constructor
   this.greeting = "Hello world!";
@@ -14,13 +17,14 @@ Greetr.prototype.greet = function(data) {
   console.log(this.greeting + ': ' + data);
   this.emit(eventConfig.GREET, data);
 }
+*/
 
 var greeter1 = new Greetr();
 
 // Greetr is able to use '.on', which is a prop of EventEmitter
 // this is because of line 10
 greeter1.on(eventConfig.GREET, function(data) {
-  console.log("Someone greeted!: " + data);
+  // console.log("Someone greeted!: " + data);
   console.log(`Someone greeted: ${data}`); //ES6 syntax
 })
 
